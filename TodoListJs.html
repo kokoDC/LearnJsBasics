@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> TODO LIST</h1>
+    <input type ="text" id="newTodo" value="tâche à faire">
+    <input type="submit" value="ajouter" onclick="addTodo()">
+
+    <input type ="text" id="removeTodo" value="tâche effectuée">
+    <input type="submit" value="supprimer" onclick="todoRemove()">
+    <div id="app">
+        <div id="todoList">
+
+        </div>
+
+
+    </div>
+    <script>
+        /**alert("affiche boite de dialogue")
+        console.log("affiche du texte dans la consoledu navigateur")
+        let prenom = prompt("Recevoir des donnees en entrée")
+        console.log(prenom)
+        alert("Bonjour "+ prenom)**/
+        let todos =[]
+        function writeTodo(){
+            document.getElementById("todoList").innerHTML=""
+            for(let todo of todos){
+                let nouvelleBalise = document.createElement('p')
+                nouvelleBalise.innerText = todo
+                document.getElementById("todoList").appendChild(nouvelleBalise)
+            }
+        }
+        function addTodo(){
+            if (document.getElementById('newTodo').value!=""){
+            todos.push(document.getElementById('newTodo').value)
+            document.getElementById('newTodo').value = ""
+            console.log(todos)
+            writeTodo()
+            }
+            else
+            alert("entrez une nouvelle tâche afin de l'ajouter à vote TODOList")
+        }
+
+        function todoRemove(){
+            let todoRemove = document.getElementById('removeTodo').value
+            let count = 0
+            for (let todo of todos){
+                if (todo == todoRemove){
+                    todos.splice(todos.indexOf(todo),1)
+                    count = count++
+                    console.log(count)
+                }
+            }
+            document.getElementById('removeTodo').value = ""
+            //document.getElementById("todoList").innerHTML=""
+            document.getElementById('removeTodo').value = ""
+            console.log(todos)
+            writeTodo()
+            
+        }
+/* ----------------- Pour s'exercer--------------
+Une autre méthode serait d'imaginer un submit à la suite de chaque tâche avec pour valeur, son index dans le tableau todos[]
+et ainsi renvoyer à chaque submit son index à la fonction todoRemove */
+    </script>
+</body>
+</html>
